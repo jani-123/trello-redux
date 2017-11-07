@@ -42,7 +42,7 @@ const SignUp = () => {
         </div>
       </form>
       <div className="new-vist">
-        <NavLink to="/sign_in" type="submit" className="btn new">
+        <NavLink to="/" type="submit" className="btn new">
           Sign In
         </NavLink>
       </div>
