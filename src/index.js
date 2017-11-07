@@ -13,7 +13,7 @@ const Index = () => (
   <Provider store={store}>
      <HashRouter>
         <Switch>
-           <Route exact path="/sign_in" component={SignIn} />
+           <Route exact path="/" component={SignIn} />
            <Route path="/sign_up" component={SignUp} />
            <Route path="/App" component={App} />
         </Switch>
