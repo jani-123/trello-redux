@@ -50,8 +50,20 @@ body{
   background-color: transparent;
   color: white;
   border-color: white;
+  margin-left: -50px;
 }
 .formulario{
   margin-left: 35%;
   margin-top: 20px;
+}
+.new{
+  color: white;
+}
+.new-vist{
+  text-align: center;
+}
+.footer{
+  color: white;
+  text-align: center;
+  margin-top: 120px;
 }
