@@ -1,8 +1,7 @@
 import createStore from "redux-zero";
 
 const initialState = {
-	players: 'hola',
-	selectedPlayerIndex: -1
+	active: false,
 };
 
 const store = createStore(initialState);

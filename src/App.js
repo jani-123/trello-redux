@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import trello from './trello-logo.png';
 import './App.css';
 import { connect } from "redux-zero/react";
-//import { incrementScore} from "./actions";
-const App = () => {
+import { changeStatus,clearText } from "./actions";
+const NavApp = () => {
   return (
     <nav className="navbar">
       <div className="container-fluid  Narvab">
@@ -39,7 +38,47 @@ const App = () => {
   );
 }
 
-const mapToProps = ({ trello }) => ({ trello });
+const ListAdd = ({ active }) => {
+  const onClick = () => {
+    changeStatus();
+  }
+  const onSubmit = e => {
+    e.preventDefault();
+    let text = this.inputTitle.value;
+    console.log(text);
+    clearText(text);
+  };
+  return (
+    <div>
+      {
+        active ? 
+        <div className="noteList" >
+          <form onSubmit={onSubmit} >
+            <input className="title" placeholder="añadir lista ..." ref={e => (this.inputTitle = e)}/>
+            <button className="btn btn-success guardar" type="submit">Guardar</button>
+            <button className="btn btn-defaul elimina">X</button>
+          </form>
+        </div>
+          :
+        <div className="cajaText" onClick={onClick}>
+          <span className="text" >Añade una lista</span>
+        </div>
+      }
+    </div>
+  );
+
+}
+
+const App = ({ active }) => {
+  return (
+    <div>
+      <NavApp />
+      <ListAdd active={active} />
+    </div>
+  );
+}
+
+const mapToProps = ({ active }) => ({ active });
 
 export default connect(mapToProps)(App);
 

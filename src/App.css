@@ -67,3 +67,52 @@ body{
   text-align: center;
   margin-top: 120px;
 }
+
+/*  vista trello */
+
+.cajaText{
+  margin: 20px;
+  background-color: #2869cc;
+  width: 250px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  display: inline-block
+}
+.cajaText:hover{
+  background-color: #28317c;
+}
+.text{
+  color: white; 
+}
+
+/*  vista cuadro */
+
+.noteList{
+  padding: 5px; 
+  margin: 20px;
+  width: 270px;
+  height: 110px;
+  border-radius: 4px;
+  color: #777;
+  background-color: #E2E4E6;
+  display: inline-block;
+}
+.guardar{
+  margin: 10px;
+}
+.elimina{
+  margin: 10px;
+}
+.title{
+  color: #151414;
+  width: 250px;
+  height: 35px;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: #AAAAAA;
+  background-color: #CCCDCF;
+  padding: 5px 0px 10px 10px;
+  margin: 5px;
+}
