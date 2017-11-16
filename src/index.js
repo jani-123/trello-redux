@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import BoarApp from "./App";
+import App from "./App";
 import SignIn from './sign_in';
 import SignUp from './sign_up';
 import Detail from "./detail";
@@ -16,7 +16,7 @@ const Index = () => (
       <Switch>
         <Route exact path="/" component={SignIn} />
         <Route path="/sign_up" component={SignUp} />
-        <Route path="/App" component={BoarApp} />
+        <Route path="/App" component={App} />
         <Route path="/detail" component={Detail} />
       </Switch>
     </HashRouter>

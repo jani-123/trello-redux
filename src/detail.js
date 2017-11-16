@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import trello from "./trello-logo.png";
 import "./App.css";
 import { connect } from "redux-zero/react";
-import { changeNote } from "./actions";
+//import { changeNote } from "./actions";
 const NavApp = () => {
   return (
     <nav className="navbar">
@@ -48,9 +48,7 @@ const Detailist = ({ listBoard, active, selectedListBoard }) => {
         return <div key={index}>
             <h5>{item.subTitle}</h5>
             <div>{item.note}</div>
-            {active ? <div className="addboard col-md-3" onClick={() => {
-                  changeNote();
-                }}>
+            {active ? <div className="addboard col-md-3" >
                 <p>add my board...</p>
               </div> : <div className="noteList">
                 <form>

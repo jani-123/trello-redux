@@ -12,27 +12,27 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const snapshotToArray = snapshot => {
-  let comments = [];
-  snapshot.forEach(childSnapshot => {
-    let item = childSnapshot.val();
-    let key = childSnapshot.key;
-    item.id = key;
-    comments.push(item);
-  });
-  store.setState({ comments: comments });
-};
+// const snapshotToArray = snapshot => {
+//   let comments = [];
+//   snapshot.forEach(childSnapshot => {
+//     let item = childSnapshot.val();
+//     let key = childSnapshot.key;
+//     item.id = key;
+//     comments.push(item);
+//   });
+//   store.setState({ comments: comments });
+// };
 
-export const changeBoard = () => {
+export const changeList = () => {
   store.setState({
     active: true
   });
 };
-export const addTitleBoard = title => {
+export const addTitleList= title => {
   let boardNews = store.getState().listBoard;
   const newBoard = boardNews.concat({
     title: title,
-    list: []
+    list: [],
   });
   store.setState({
     listBoard: newBoard,
@@ -44,8 +44,40 @@ export const changeVista = index => {
     selectedListBoard: index
   });
 };
-export const changeNote = () => {
+
+
+export const changeTextList = () => {
   store.setState({
-    active: false
+   
+    addActive: true
   });
 };
+
+// export  async function addComments (name,comment) {
+//   const comments = [...store.getState().comments]
+//  const newcomment = {
+//     name: name,
+//     comment: comment
+//  };
+
+//  const res = await  firebase.database().ref('comentarios/').push (newcomment);
+//  newcomment.id = res.key;
+
+//  const newComment= comments.concat(newcomment);
+// store.setState({
+//   comments: newComment
+// })
+export const addNote = (textNote) => {
+  const note = [...store.getState().listBoard];
+  console.log(note)
+  //const arrList = note.map(e => e.list);
+  const newsNotes = note.concat({
+    list: [{text:textNote}]
+  }) 
+  store.setState({
+    listBoard: newsNotes,
+    addActive: false
+  })
+  console.log(store.getState().listBoard);
+
+}

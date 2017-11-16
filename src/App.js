@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import trello from "./trello-logo.png";
 import "./App.css";
 import { connect } from "redux-zero/react";
-import { changeBoard, addTitleBoard ,changeVista} from "./actions";
+import {
+  changeList,
+  addTitleList,
+  changeVista,
+  changeTextList,
+  addNote
+} from "./actions";
 import { NavLink } from "react-router-dom";
 
 const NavApp = () => {
@@ -42,24 +48,52 @@ const NavApp = () => {
   );
 };
 
-const ListBoard = ({ listBoard, active }) => {
+const ListBoard = ({ listBoard, active , addActive }) => {
   const onSubmit = e => {
     e.preventDefault();
     let title = this.inputTitle.value;
     console.log(title);
-    addTitleBoard(title);
+    addTitleList(title);
   };
+  const onClick = (e) => {
+    e.preventDefault();
+    console.log(this.note.value);
+    addNote(this.note.value);
+    this.note.value = '';
+  }
   return (
-    <div>
-      <h3>My Board</h3>
+    <div className="container">
       {listBoard.map((item, index) => {
-        return <NavLink to="/detail" onClick={() => {
-              changeVista(index);
-            }}>
-            <div className="board col-md-3" key={index}>
+        return (
+          <div className="row" key={index}>
+            <div className={addActive?"tableNote col-md-3":"board col-md-3"}>
               <h4>{item.title}</h4>
+              {addActive ? (
+                <div>
+                  <form>
+                    <textarea
+                      placeholder="add"
+                      onChange={(e) => { this.note = e }}
+                    />
+                    <button className="btn btn-success guardar" type="submit" onClick={onClick}>
+                      Guardar
+                    </button>
+                    <button className="btn btn-defaul elimina">X</button>
+                  </form>
+                </div>
+              ) : (
+                <div
+                  className="add"
+                  onClick={() => {
+                    changeTextList();
+                  }}
+                >
+                  <p>Añade tus listas...</p>
+                </div>
+              )}
             </div>
-          </NavLink>;
+          </div>
+        );
       })}
       {active ? (
         <div className="noteList">
@@ -67,7 +101,7 @@ const ListBoard = ({ listBoard, active }) => {
             <input
               className="title"
               placeholder="añadir titulo..."
-              ref={e => (this.inputTitle = e)}
+              onChange={e => (this.inputTitle = e)}
             />
             <button className="btn btn-success guardar" type="submit">
               Guardar
@@ -76,28 +110,30 @@ const ListBoard = ({ listBoard, active }) => {
           </form>
         </div>
       ) : (
-        <div
-          className="addboard col-md-3"
-          onClick={() => {
-            changeBoard();
-          }}
-        >
-          <p>add my board...</p>
+        <div className="row">
+          <div
+            className="addboard col-md-3"
+            onClick={() => {
+              changeList();
+            }}
+          >
+            <p>Añade Tu List</p>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-const BoarApp = ({ listBoard, active }) => {
+const App = ({ listBoard, active , addActive }) => {
   return (
     <div>
       <NavApp />
-      <ListBoard listBoard={listBoard} active={active} />
+      <ListBoard listBoard={listBoard} active={active} addActive={addActive} />
     </div>
   );
 };
 
-const mapToProps = ({ listBoard, active }) => ({ listBoard, active });
+const mapToProps = ({ listBoard, active , addActive}) => ({ listBoard, active , addActive});
 
-export default connect(mapToProps)(BoarApp);
+export default connect(mapToProps)(App);

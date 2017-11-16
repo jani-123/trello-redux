@@ -38,7 +38,8 @@ const LISTCOMMENT = [
 const initialState = {
 	listBoard: LISTCOMMENT,
   selectedListBoard: 0,
-	active: false
+  active: false,
+  addActive:false
 };
 
 const store = createStore(initialState);
